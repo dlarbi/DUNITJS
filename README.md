@@ -6,12 +6,18 @@ Right now it has an equal() and a notEqual() method, some config options, a call
 
 Include dunitjs in your project, implement like:
 
-    //Some configuration options
+    //You can setup some configuration options
     DUNITJS.config.alterTitle = true; //Browser tab will change to 'PASSED' or 'FAILED #' on completion
 
-    //You can setup a done callback function with the test summary
+    //You can setup a done callback function with the test summary after the Unit test is complete
     DUNITJS.done('Test Name', function(results) {
 		 console.log('////////REPORT FOR ' + results.testName + ': ' + results.fails + ' fails out of ' + results.total + ' tests. Oops.////////');
+    });
+    
+    //You can use log(), and now each of the assertions in your Unit test return their results to this callback
+    DUNITJS.log('Example Test Name', function(results){
+	//We could write these results to a text file!
+	$('body').append('ARGUMENT1 WAS ' + results.arg1 + ', ARGUMENT 2 WAS ' + results.arg2 + ',<br>');
     });
     
     DUNITJS.test('Test Name', function(assert) { 
