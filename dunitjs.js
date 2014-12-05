@@ -1,7 +1,7 @@
 (function($) {
 	 'use strict';
 	 var DUnitJS = function() {
-				 
+		  
 		 //We create assert objects with a build function to enforce 
 		 //that each test instance gets its own properties (ie. failure counters).
 		 //Multiple tests can take place at the same time, and their results wont interfere.
@@ -28,7 +28,7 @@
 			 
 			 assert.notEqual = function(x, y) {
 				 if(x != y) {
-					 console.log('PASS: ' + x + ' is not equal to ' + y + '.');
+					 console.log('PASS: ' + x + ' is not equal to ' + y);
 				 } else {
 					 console.log('FAIL: ' + x + ' and ' + y + ' are equal.');
 					 assert.failCount++;
@@ -36,17 +36,30 @@
 				 assert.testCount++;			 
 			 };
 			 return assert;
-		 };
+		 };		 
 		 
 		 //DUNITJS.test(test_name, testRoutine)
 		 //We build a new assert object and pass it to to the testRoutine function.
 		 //The testRoutine function is defined by the user in their implementation of DUNITJS.test().
-		 //The assert object and its tests are available to the user inside of DUNITJS.test().
+		 //The assert object and its tests are available to the user inside of DUNITJS.test()'s callback.
 		 this.test = function(testName, testRoutine) {	
 			 var assert = buildAssert();
 			 console.log('You are running: ' + testName);
 			 testRoutine(assert);
-			 console.log('////////REPORT: ' + assert.failCount + ' fails out of ' + assert.testCount + ' tests. Oops.////////');			 
+			 console.log('////////REPORT: ' + assert.failCount + ' fails out of ' + assert.testCount + ' tests. Oops.////////');
+			 $(document).trigger('testComplete', {testName: testName, total: assert.testCount, fails:assert.failCount, warnings: assert.warningCount, pass: assert.testCount - assert.failCount})
+		 };
+		 
+		 //The test results are available in this callback
+		 //results = {testName, pass, total, fails, warnings }
+		 //The callback will only fire if the done method's argument
+		 //matches the name of the test that triggered the event.
+		 this.done = function(testName, doneCallback) {
+			 $(document).on('testComplete', function(e, results) {
+				 if(testName == results.testName) {
+					 doneCallback(results);
+				 }				 
+			 });
 		 };
 		 
 	 };
@@ -58,10 +71,18 @@
 
 
 $(window).click(function() {
-	DUNITJS.test('////////DUNITJS EXAMPLE TESTS/////////', function(assert){
-		assert.equal(1, 2);
-		assert.equal(1, 1);
-		assert.equal(0, 1);
-		assert.notEqual('meep', 'moop');
+	
+	DUNITJS.done('EXAMPLE TESTS', function(results) {
+		console.log(results.testName, results.total, results.pass, results.fails, results.warnings)
 	});
+	
+	DUNITJS.test('EXAMPLE TESTS', function(assert){
+		for(var i = 0; i < 5; i++) {
+			assert.equal(Math.floor((Math.random() * 5) + 1), Math.floor((Math.random() * 5) + 1))
+		}
+		for(var i = 0; i < 5; i++) {
+			assert.notEqual(Math.floor((Math.random() * 5) + 1), Math.floor((Math.random() * 5) + 1))
+		}
+	});	
+	
 });
