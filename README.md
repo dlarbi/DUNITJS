@@ -25,11 +25,11 @@ Include dunitjs in your project, implement like:
 	 $('body').append('ARGUMENT1 WAS ' + results.arg1 + ', ARGUMENT 2 WAS ' + results.arg2 + ',<br>');
     });
     
-    DUNITJS.test('Test Name', function(assert) { 
-        assert.equal(1, 2);
-        assert.equal(1, 1);
-        assert.equal(0, 1);
-        assert.notEqual('meep', 'moop');
+    DUNITJS.test('Test Name', function(testSuite) { 
+        testSuite.equal(1, 2);
+        testSuite.equal(1, 1);
+        testSuite.equal(0, 1);
+        testSuite.notEqual('meep', 'moop');
     });
 
 Open your console to see your results.  Something like this, depending on your options. 
