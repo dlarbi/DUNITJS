@@ -5,7 +5,8 @@ A unit testing framework.
 Right now it has an equal() and a notEqual() method. Super simple stuff.  I wanted to build this to show myself how "I would build it", and try to make an architecture that makes some sense.  I plan to compare with other frameworks to make improvements and see all the ways they do it better.
 
 Include dunitjs in your project, implement like:
-
+    //Some configuration options
+    DUNITJS.config.alterTitle = true; //Browser tab will change to 'PASSED' or 'FAILED #' on completion
 
     //You can setup a done callback function with the test summary
     DUNITJS.done('Test Name', function(results) {
