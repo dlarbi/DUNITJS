@@ -24,7 +24,7 @@
 					 assert.failCount++;
 				 }
 				 assert.testCount++;			 
-			 }
+			 };
 			 
 			 assert.notEqual = function(x, y) {
 				 if(x != y) {
