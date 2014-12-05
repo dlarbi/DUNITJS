@@ -7,8 +7,10 @@ Right now it has an equal() and a notEqual() method. Super simple stuff.  I want
 Include dunitjs in your project, implement like:
 
     DUNITJS.test('Test Name', function(assert) { 
-      assert.equal(x, y);
-      assert.notEqual(x, y);
+        assert.equal(1, 2);
+        assert.equal(1, 1);
+        assert.equal(0, 1);
+        assert.notEqual('meep', 'moop');
     });
 
 Open your console to see your results.  
