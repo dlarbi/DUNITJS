@@ -9,7 +9,7 @@ Include dunitjs in your project, implement like:
 
     //You can setup a done callback function with the test summary
     DUNITJS.done('Test Name', function(results) {
-        console.log(results.testName, results.pass, results.fails, results.warnings);
+		 console.log('////////REPORT FOR ' + results.testName + ': ' + results.fails + ' fails out of ' + results.total + ' tests. Oops.////////');
     });
     
     DUNITJS.test('Test Name', function(assert) { 
