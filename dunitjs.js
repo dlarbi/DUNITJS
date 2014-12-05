@@ -46,8 +46,7 @@
 			 var assert = buildAssert();
 			 console.log('You are running: ' + testName);
 			 testRoutine(assert);
-			 console.log('////////REPORT: ' + assert.failCount + ' fails out of ' + assert.testCount + ' tests. Oops.////////');
-			 $(document).trigger('testComplete', {testName: testName, total: assert.testCount, fails:assert.failCount, warnings: assert.warningCount, pass: assert.testCount - assert.failCount})
+			 $(document).trigger('testComplete', {testName: testName, total: assert.testCount, fails:assert.failCount, warnings: assert.warningCount, pass: assert.testCount - assert.failCount});
 		 };
 		 
 		 //The test results are available in this callback
@@ -73,16 +72,29 @@
 $(window).click(function() {
 	
 	DUNITJS.done('EXAMPLE TESTS', function(results) {
-		console.log(results.testName, results.total, results.pass, results.fails, results.warnings)
+		 console.log('////////REPORT FOR ' + results.testName + ': ' + results.fails + ' fails out of ' + results.total + ' tests. Oops.////////');
 	});
 	
 	DUNITJS.test('EXAMPLE TESTS', function(assert){
 		for(var i = 0; i < 5; i++) {
-			assert.equal(Math.floor((Math.random() * 5) + 1), Math.floor((Math.random() * 5) + 1))
+			assert.equal(Math.floor((Math.random() * 5) + 1), Math.floor((Math.random() * 5) + 1));
 		}
 		for(var i = 0; i < 5; i++) {
-			assert.notEqual(Math.floor((Math.random() * 5) + 1), Math.floor((Math.random() * 5) + 1))
+			assert.notEqual(Math.floor((Math.random() * 5) + 1), Math.floor((Math.random() * 5) + 1));
 		}
 	});	
+	
+	DUNITJS.done('EXAMPLE TESTS2', function(results) {
+		 console.log('////////REPORT FOR ' + results.testName + ': ' + results.fails + ' fails out of ' + results.total + ' tests. Oops.////////');
+	});
+	
+	DUNITJS.test('EXAMPLE TESTS2', function(assert){
+		for(var i = 0; i < 500; i++) {
+			assert.equal(Math.floor((Math.random() * 5) + 1), Math.floor((Math.random() * 5) + 1));
+		}
+		for(var i = 0; i < 500; i++) {
+			assert.notEqual(Math.floor((Math.random() * 5) + 1), Math.floor((Math.random() * 5) + 1));
+		}
+	});
 	
 });
