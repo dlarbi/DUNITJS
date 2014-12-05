@@ -28,7 +28,7 @@
 			 
 			 assert.notEqual = function(x, y) {
 				 if(x != y) {
-					 console.log('PASS: ' + x + ' is not equal to ' + y);
+					 console.log('PASS: ' + x + ' is not equal to ' + y + '.');
 				 } else {
 					 console.log('FAIL: ' + x + ' and ' + y + ' are equal.');
 					 assert.failCount++;
