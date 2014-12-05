@@ -6,6 +6,12 @@ Right now it has an equal() and a notEqual() method. Super simple stuff.  I want
 
 Include dunitjs in your project, implement like:
 
+
+    //You can setup a done callback function with the test summary
+    DUNITJS.done('Test Name', function(results) {
+        console.log(results.testName, results.pass, results.fails, results.warnings);
+    });
+    
     DUNITJS.test('Test Name', function(assert) { 
         assert.equal(1, 2);
         assert.equal(1, 1);
@@ -14,3 +20,10 @@ Include dunitjs in your project, implement like:
     });
 
 Open your console to see your results.  
+
+    You are running: Test Name
+    FAIL: 1 is not equal to 2
+    PASS: 1 and 1 are identical. They are the same object.
+    FAIL: 0 is not equal to 1
+    PASS: meep is not equal to moop
+    ////////REPORT FOR Test Name: 2 fails out of 4 tests. Oops.////////
