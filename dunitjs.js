@@ -3,7 +3,7 @@
 	 var DUnitJS = function() {
 		  
 		 this.config = {
-			 alterTitle:false //Change title to 'PASSED TESTS' if passed
+			 alterTitle:false //Changes page title to 'PASSED TESTS' if passed
 		 };
 		 
 		 //We create testSuite objects with a build function to enforce 
