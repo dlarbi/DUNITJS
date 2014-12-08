@@ -48,7 +48,8 @@
 		 //DUNITJS.test(test_name, testRoutine)
 		 //We build a new testSuite object and pass it to to the testRoutine function.
 		 //The testRoutine function is implemented by the user in DUNITJS.test().
-		 //The testSuite object and its tests are available to the user inside of DUNITJS.test()'s callback.
+		 //The testSuite object and its tests are available to the user inside the testRoutine
+		 //implementation's callback function. (Note: this is not related to this.done)
 		 this.test = function(testName, testRoutine) {			
 			 var testSuite = buildTestSuite(testName);
 			 console.log('You are running: ' + testName);
@@ -63,7 +64,9 @@
 		 //The callback will only fire if the done method's argument
 		 //matches the name of the test that triggered the event.
 		 this.done = function(testName, doneCallback) {
+		 	//unbind testComplete before rebinding to prevent multiple bindings
 			 $(document).off('testComplete').on('testComplete', function(e, results) {
+			 	//We check to see if the argument given for testName matches the results sent by testSuite
 				 if(testName == results.testName) {
 					 doneCallback(results);
 				 }				 
@@ -71,7 +74,7 @@
 		 };
 		 
 		 //If the user uses DUNITJS.log(), The log callback function 
-		 //will be triggered each time a testSuite.test() is executed.
+		 //will be triggered each time a any test in the testSuite is executed.
 		 //Results for the individual test are available. User could write them 
 		 //in a log or store them in a database to track more micro test details.
 		 this.log = function(testName, logCallback) {
@@ -83,7 +86,7 @@
 		 };
 		 
 	 };
-	 	 
+	 //Expose the library so once this file is included, users can do DUNITJS.test('testName', function(results) {});
 	 window.DUNITJS = new DUnitJS();
 	 return;
 })(jQuery);
