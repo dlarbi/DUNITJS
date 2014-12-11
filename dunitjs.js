@@ -28,7 +28,15 @@
 					 testSuite.failCount++;
 				 }
 				 testSuite.testCount++;
-				 $(document).trigger('assertComplete', {testName: testName, arg1:x, arg2:y, total: testSuite.testCount, fails:testSuite.failCount, warnings: testSuite.warningCount, pass: testSuite.testCount - testSuite.failCount})
+				 $(document).trigger('assertComplete', {
+				 	testName: testName,
+				 	arg1:x,
+				 	arg2:y,
+				 	total: testSuite.testCount,
+				 	fails:testSuite.failCount,
+				 	warnings: testSuite.warningCount,
+				 	pass: testSuite.testCount - testSuite.failCount
+				 })
 			 };
 			 
 			 testSuite.notEqual = function(x, y) {
@@ -39,7 +47,15 @@
 					 testSuite.failCount++;
 				 }				 
 				 testSuite.testCount++;
-				 $(document).trigger('assertComplete', {testName: testName, arg1:x, arg2:y, total: testSuite.testCount, fails:testSuite.failCount, warnings: testSuite.warningCount, pass: testSuite.testCount - testSuite.failCount})
+				 $(document).trigger('assertComplete', {
+				 	testName: testName,
+				 	arg1:x,
+				 	arg2:y,
+				 	total: testSuite.testCount,
+				 	fails:testSuite.failCount,
+				 	warnings: testSuite.warningCount,
+				 	pass: testSuite.testCount - testSuite.failCount
+				 })
 			 };
 			 return testSuite;
 		 };
@@ -56,7 +72,13 @@
 			 testRoutine(testSuite);
 			 //If config.alterTitle is true we alert the user of results on their test's tab.
 			 this.config.alterTitle && testSuite.failCount === 0 ? document.title = 'PASSED ALL TESTS' : document.title = 'FAILED ' + testSuite.failCount;
-			 $(document).trigger('testComplete', {testName: testName, total: testSuite.testCount, fails:testSuite.failCount, warnings: testSuite.warningCount, pass: testSuite.testCount - testSuite.failCount});
+			 $(document).trigger('testComplete', {
+			 	testName: testName,
+			 	total: testSuite.testCount,
+			 	fails:testSuite.failCount,
+			 	warnings: testSuite.warningCount,
+			 	pass: testSuite.testCount - testSuite.failCount
+			 });
 		 };
 		 
 		 //The test results are available in this callback
