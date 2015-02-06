@@ -3,7 +3,7 @@ DUNITJS
 
 A super simple unit testing framework.  Limited in functionality, but ideally it will continue to scale well.  I plan to compare with other frameworks to make improvements over time.
 
-Methods available:
+#####Methods available for logging, callbacks, setting up tests:
 
 A callback to occur after testName is complete
 
@@ -17,7 +17,7 @@ Setup a unit test named testName
 
 	DUNITJS.test(testName, function(testSuite))
 
-Methods in the testSuite:
+#####Methods for comparisons in the testSuite:
 
 	testSuite.equal()
 
