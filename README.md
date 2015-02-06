@@ -11,7 +11,7 @@ A callback to occur after testName is complete
 
 A callback to occur each time a test within testName is complete
 
-	DUNITJS.log(testName, function())
+	DUNITJS.log(testName, function)
 
 Setup a unit test named testName
 
