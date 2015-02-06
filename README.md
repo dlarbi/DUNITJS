@@ -1,8 +1,7 @@
 DUNITJS
 =======
 
-A simple unit testing framework.
-Right now it has an equal() and a notEqual() method in its testSuite, some config options, a callback function for when a unit test has finished running and a logging function that adds callbacks to each assertion in a Unit test. Super simple stuff.  I plan to compare with other frameworks to make improvements over time.
+A super simple unit testing framework.  Limited in functionality, but ideally it will continue to scale well.  I plan to compare with other frameworks to make improvements over time.
 
 Methods available:
 
